@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+  <div id="app">
+    {{nome}}, 
+    {{idade}}, 
+    {{faculdade.curso}}
+  </div>
+
+  <script>
+    //interessante atribuir o new vue no vm para ter acesso a todos os dados do Vue
+    // como os getters e setters dos dados criados automaticamente para cada dado
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        nome: "Matheus Rech",
+        idade: 23,
+        faculdade: {
+          curso: "ADS",
+          concluido: "nao",
+        }
+        }
+      }
+    );
+      vm.nome = "Gabriela";
+      vm.idade = 21;
+      vm.faculdade.curso = "pp"
+      //reatividade do vm
+
+    console.log(vm);
+  
+  </script>
+</body>
+</html>
