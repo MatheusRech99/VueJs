@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Aula 05</title>
+</head>
+<body>
+    <!-- Metodo usando Vuejs -->
+    <div id="comercio">
+        <p>Bermudas - R$ <span>{{preco}}</span></p>
+        <button @click="total++">Adcionar</button>
+        <button @click="total--">Remover</button>
+        <span>{{total}}</span>
+        <p>Total: <span>{{preco*total}}</span></p>
+    </div>
+    <!-- Metodo usando VannilaJs -->
+    
+    <div>
+        <p>Camisas - R$ <span class="preco"></span></p>
+        <button class="adcionar">Adcionar</button>
+        <button class="remover">Remover</button>
+        <span class="total"></span>
+        <p>Total: <span class="precoTotal"></span></p>
+    </div>
+
+    <script>
+        // Metodo usando VueJs
+        const vm = new Vue({
+            el: "#comercio",
+            data: {
+                preco: 39,
+                total: 0
+            }
+        });
+
+
+        // Metodo usando VannilaJs
+        const dados = {preco: 49, total: 0};
+        const preco = document.querySelector(".preco");
+        const total = document.querySelector(".total");
+        const precoTotal = document.querySelector(".precoTotal");
+        const adcionar = document.querySelector(".adcionar");
+        const remover = document.querySelector(".remover");
+
+        preco.innerText = dados.preco;
+        total.innerText = dados.total;
+        precoTotal.innerText = dados.preco * dados.total;
+
+        function incrementar(){
+            dados.total++;
+            atualizarUI();
+        }
+        function dimiuir(){
+            dados.total--;
+            atualizarUI();
+        }
+        function atualizarUI(){
+            total.innerText = dados.total;
+            precoTotal.innerText = "R$ " + dados.preco * dados.total;
+        }
+        adcionar.addEventListener("click", incrementar);
+        remover.addEventListener("click", dimiuir);
+    </script>
+</body>
+</html>
