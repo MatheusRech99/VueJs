@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+
+    <!-- <div id="app">
+        {{empresa}}
+        {{produto}}
+    </div> -->
+
+    <div id="Q">
+        <p>Lado: {{lado}}</p>
+        <button @click="lado++">Aumentar quadrado</button> <!-- testando reatividade  -->
+        <p>Perimetro: {{lado * 4}}</p>
+        <p>Área: {{lado * lado}}</p>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                empresa: "Apple",// nao utilizar '_' ou '$'' para definir as propriedades do objeto, fica mais complexo futuramente sempre acessar o $data
+                produto: "Iphone"
+            }
+        });
+
+        const vmQ = new Vue({
+            el: "#Q",
+            data: {
+                lado : 5,
+
+            }
+        })
+    </script>
+
+
+
+
+    <!-- <div id="app">
+        {{logado}}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                logado: "",
+            }
+        });
+
+        setTimeout(() =>{
+            vm.logado = "sim"
+        }, 2000)
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instancia Vuejs</title>
+    <script src="../vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{instrumento}}
+        {{cor}}
+        {{nomeProduto}}
+    </div>
+
+    <div id="app2">
+        {{ferramenta}}
+    </div>
+
+
+
+    <script>
+        function VueClone(options){
+            this.options = options;
+            this.el = document.querySelector(options.el);
+            this.data = options.data;
+        };
+
+
+        const vmClone = new VueClone({
+            el: "#app",
+            data: {
+                nome: "martelo"
+            }
+        });
+
+        console.log(vmClone)
+
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                instrumento : "violao",
+                cor: "vermelho",
+            },
+            computed: {
+                nomeProduto(){
+                    setTimeout(() => { // utilizar arrowFunction em alguns casos para nao perder a definicao do $this do vue
+                        console.log(this.instrumento)
+                    }, 3000);
+                }
+            }
+        });
+        console.log(vm);
+
+        const vm1 = new Vue({
+            el: "#app2",
+            data: {
+                ferramenta: "furadeira"
+            }
+        })
+    </script>
+</body>
+</html>

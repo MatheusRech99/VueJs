@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methods</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <!-- <div id="app">
+        <p>{{instrumento}}</p>
+        <button @click="mudarNome('Violao')">Violao</button>
+        <button @click="mudarNome('Guitarra')">Guitarra</button>
+        <button @click="verEvento">Evento</button>
+    </div> -->
+
+    <div id="teste">
+        <button @click="puxarAcoes">Puuuxxxa</button>
+        <p>LatestTime: {{acoes.latestTime}}</p>
+        <p>LatestPrice: {{acoes.latestPrice}}</p>
+        <p>Company Name: {{acoes.companyName}}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#teste",
+            data: {
+                acoes: {},
+            },
+            methods: {
+                puxarAcoes(){
+                    const response = fetch('https://api.origamid.dev/stock/msft/quote') // apos retornar os dados
+                    .then( response => response.json()) // faça o seguinte
+                        .then(json => {
+                            this.acoes= json;
+                        })
+                }
+            }
+        });
+
+
+
+
+
+    //    const vm = new Vue({
+    //     el: "#app",
+    //     data: {
+    //         instrumento: "",
+    //     },
+    //     methods: {
+    //         mudarNome (instrumento){
+    //             this.instrumento = instrumento // utilizar o this para referenciar ao objeto
+    //             this.verEvento;
+    //         },
+    //         verEvento(event){
+    //             alert('Evento realizado')
+    //         }
+    //     }
+    //    })
+    </script>
+
+</body>
+</html>
