@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-bind</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <div>
+            <p>Company: {{aapl.companyName}}</p>
+            <p :class="aapl.marketCap > googl.marketCap ? 'verde' : 'vermelho'">MarketCap: {{aapl.marketCap}}</p>
+        </div>
+        <hr>
+        <div>
+            <p>Company: {{googl.companyName}}</p>
+            <p :class="googl.marketCap > aapl.marketCap ? 'verde' : 'vermelho'">MarketCap: {{googl.marketCap}}</p>
+        </div>
+        <button @click="puxarAcoes">Puxar Informaçao</button>
+    </div>
+
+    <style>
+        .verde {
+            color: green
+        }
+        .vermelho {
+            color: red
+        }
+    </style>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                aapl: {},
+                googl: {},
+            },
+            methods: {
+                puxarAcoes(){
+                    const response = fetch('https://api.origamid.dev/stock/aapl/quote') // apos retornar os dados
+                    .then( response => response.json()) // faça o seguinte
+                        .then(json => {
+                            this.aapl= json;
+                        })
+                    const response1= fetch('https://api.origamid.dev/stock/googl/quote') // apos retornar os dados
+                    .then( response1 => response1.json()) // faça o seguinte
+                        .then(json => {
+                            this.googl= json;
+                        })
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
