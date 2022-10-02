@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-on</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <button @click="EventClick">Clique</button> <!-- Aceita expressao tambem : {{contador++}} por exemplo -->
+        <button @click="ativo = !ativo">toggle</button>
+        {{ativo}}
+        <p v-if="ativo">Mostrar texto</p>
+        <!-- Existem modificadores para o @click -->
+        <a href="#interno" @click.prevent="EventClick">Link Interno</a>
+        <!-- tambem tem outros tipos de evento, nem sempre se vive so de @click -->
+        <input type="text" @keyup="EventClick">
+        <p @mousemove="EventMove">Esse e o mouse x : {{mouse.x}}</p>
+    </div>
+
+    <script>
+        // v=on e uma diretirva que serve para atribuir eventos a um html especifico
+        // podendo substituir o v-on por @
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                ativo: true,
+                mouse: ""
+            },
+            methods:{
+                EventClick(event){
+                    console.log(event.key);
+                },
+                EventMove(event){
+                    this.mouse = event
+                }
+            }
+        });
+    </script>
+
+</body>
+</html> 
