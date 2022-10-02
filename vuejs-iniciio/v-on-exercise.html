@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-on Exercise</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li><a @click.prevent="PuxarAcao" href="https://api.origamid.dev/stock/aapl/quote">Apple</a></li>
+            <li><a @click.prevent="PuxarAcao" href="https://api.origamid.dev/stock/googl/quote">Google</a></li>
+            <li><a @click.prevent="PuxarAcao" href="https://api.origamid.dev/stock/amzn/quote">Amazon</a></li>
+            <li><a @click.prevent="PuxarAcao" href="https://api.origamid.dev/stock/ebay/quote">Ebay</a></li>
+            <li><a @click.prevent="PuxarAcao" href="https://api.origamid.dev/stock/pypl/quote">Paypal</a></li>
+          </ul>
+
+          <div>
+            <h3>{{acoes.companyName}}</h3>
+            <p>Latest Price: ${{acoes.latestPrice}}</p>
+            <p>Market Cap: ${{acoes.marketCap}}</p>
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                acoes: {}
+            },
+            methods:{
+                PuxarAcao(event){
+                    const url = event.currentTarget.href;
+                    fetch(url)
+                        .then(res => res.json())
+                        .then(res => {
+                            this.acoes = res;
+                        })
+                }
+            }
+        });
+    </script>
+
+</body>
+</html> 
