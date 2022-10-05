@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class e Style</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app" :class="cor">
+        <p :class="[cor,background]">Texto</p>
+        <p :class="{ativo: estaAtivo, cor: possuiCor}">Texto Ativo</p>
+        <button @click="estaAtivo = !estaAtivo">Ativar/Desativar</button>
+
+        <a :style="{background:bgColor, color: color, fontSize: tamanho + 'px'}">Customize Aqui</a>
+        <button @click="tamanho++" :style="estiloBotao">Aumentar</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                cor: "azul",
+                background: "red",
+                estaAtivo: true,
+                possuiCor: true,
+                bgColor: "pink",
+                color: "white",
+                tamanho: 20,
+                estiloBotao: {
+                    borderRadius:"5px",
+                    border: "none",
+                    padding: "5px",
+                    margin: "10px",
+                    background: "green",
+                    color: "white",
+                }
+            }
+        })
+    </script>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .azul{
+            color: blue
+        }
+        .ativo {
+            background-color: green;
+        }
+    </style>
+</body>
+</html>
