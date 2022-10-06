@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-model</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- modifier do v-model : lazy = quando sai do foco do campo -->
+            <input type="text" v-model.lazy="nome">
+            <p>{{nome}}</p>
+            <br>
+            <!-- corta espacos vazios das pontas -->
+            <input type="text" v-model.trim="email" :value="email">
+            <p>{{email}}</p>
+            <br>
+            <!-- modifier number so aceita numeros / ele limpa os caracteres do campo -->
+            <input type="text" v-model.number="ano">{{ano}}
+            <br>
+
+        </div>
+
+        <input type="checkbox" id="receberEmail" v-model="receberEmail">
+        <label for="receberEmail">Receber Email</label> 
+        {{receberEmail}}
+        <br>
+        <input type="radio"v-model="cor" name="" id="azul" value="Azul">
+        <label for="azul">Azul</label>
+        <input type="radio"v-model="cor" name="" id="Vermelho" value="Vermelho">
+        <label for="Vermelho">Vermelho</label>
+        <input type="radio"v-model="cor" name="" id="Verde" value="Verde">
+        <label for="Verde">Verde</label>
+        <br>
+        {{cor}}
+        <div>
+            <select v-model="frutas">
+                <option disabled value="">Selecione</option>
+                <option value="banana">Banana</option>
+                <option value="morango">Morango</option>
+                <option value="uva">Uva</option>
+            </select>
+
+            {{frutas}}
+        </div>
+
+        <div>
+
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                nome: "andre",
+                email: "contato@gmail.com",
+                receberEmail: "",
+                cor: "",
+                frutas: "",
+                ano: 0
+            }
+        })
+    </script>
+</body>
+</html>
