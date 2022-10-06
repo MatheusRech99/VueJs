@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeCycle</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       {{msg}}
+       <p>{{dados}}</p>
+
+       <div>
+        <button @click="contador++">total: {{contador}}</button>
+       </div>
+       <br><br><br>
+       <button @click="destruir">AutoDestruição</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+               msg: "teste",
+               dados: {},
+               contador: 0
+            },
+            methods: {
+                puxarGitHub() {
+                    fetch("https://api.github.com/users/origamid")
+                    .then(r => r.json())
+                    .then(r => {
+                        this.dados = r;
+                        });
+                },
+                destruir(){
+                    console.log('ih morreu')
+                    this.$destroy();
+                }
+            },
+            beforeCreate() {
+                console.log("msgBeforeCreated: ",this.msg)
+            },
+            created() {
+                this.puxarGitHub()
+                console.log("msgCreated: ",this.msg)
+                console.log("elementoCreated: ",this.$el)
+            },
+            beforeMount() {
+                console.log('beforeMount', this.msg)
+                console.log("elementobeforeMounted: ",this.$el)
+
+            },
+            mounted() {
+                console.log('mounted')
+                console.log("elementobeforeMounted: ",this.$el)
+            },
+            beforeUpdate() {
+                console.log("testebeforeupdated")
+            },
+            updated() {
+                console.log("testeupdate")
+            },
+            beforeDestroy() {
+                console.log('vai destruir')
+            },
+            destroyed() {
+                console.log('destruiu')
+            }
+        })
+    </script>
+</body>
+</html>

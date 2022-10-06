@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeCycle</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="contador++">Adicionar</button>{{contador}}
+        <ul>
+            <li v-for="(value,key) in dados">{{key}}: {{value}}</li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+               dados: {},
+               contador: 0
+            },
+            methods: {
+                puxarGitHub() {
+                    fetch("https://api.github.com/users/matheusRech99")
+                    .then(res => res.json())
+                    .then(res => {
+                        this.dados = res
+                    })
+                }
+            },
+            created() {
+                this.puxarGitHub()
+            },
+            updated() {
+                document.title = this.contador
+            }
+           
+        })
+    </script>
+</body>
+</html>
