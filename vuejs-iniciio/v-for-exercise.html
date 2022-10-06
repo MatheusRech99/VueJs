@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-for-</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+
+        <button @click="puxarCursos">puxar</button>
+        <div v-for="curso in cursos">
+            <h1><a :href="curso.link">{{curso.curso}}</a></h1>
+            <ul>
+                <li v-for="aula in curso.aulas">{{aula.nome}} - {{aula.tempo}}</li>
+            </ul>
+        </div>
+
+        <!-- <button @click="PuxarCep">Consultar</button>
+        <ul>
+            <li v-for="(dados, key) in local">{{key}}: {{dados}}</li>
+        </ul> -->
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                // local: {},
+                cursos: {}
+            },
+            methods: {
+                puxarCursos(){
+                    fetch('../cursos.json')
+                    .then(res => res.json())
+                    .then(res => {
+                        console.log(res)
+                        this.cursos = res;
+                    })
+                }
+
+
+
+
+
+
+                // PuxarCep(){
+                //    fetch('https://viacep.com.br/ws/04538133/json/')
+                //     .then(res => res.json())
+                //         .then(res => {
+                //             this.local = res
+                //         })
+                // }
+            }
+        })
+    </script>
+
+</body>
+</html>

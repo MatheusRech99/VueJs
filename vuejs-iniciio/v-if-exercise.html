@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-if</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-show="estoqueCamisa" @click="Adcionar" >Adicionar</button>
+        <p>Camisa: {{estoqueCamisa}}</p>
+        <p>Carrinho: {{carrinho}}</p>
+        <button v-show="carrinho" @click="Remover" >Remover</button>
+        <p v-if="estoqueCamisa === 0">Cabou</p>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                estoqueCamisa: 7,
+                carrinho: 0
+            },
+            methods:{
+                Adcionar() {
+                        this.estoqueCamisa--;
+                        this.carrinho++;
+                },
+                Remover() {
+                    this.estoqueCamisa++;
+                    this.carrinho--;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

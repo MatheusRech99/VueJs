@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-for</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="(fruta, index) in frutas">{{fruta}} - {{index}}</li>
+        </ul>
+        <button @click="Alterar">Alterar</button>
+        <ul>
+            <li v-for="(estado, key) in estados">
+                <p> {{key}} -  Estado: {{estado.nome}} - Populacao: {{estado.populacao}}</p>
+                
+            </li>
+        </ul>
+        <span v-for="numero in 5">{{numero}}</span>
+    </div>
+
+    <script>
+        // Modificar diretamente o valor de um array, nao ativa a reatividade do Vue
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                numero : [],
+                frutas: ['Pera','Banana','Laranja','Abacate',],
+                estados: {
+                sc: {
+                    populacao: "1M",
+                    nome: "Santa Catarina",
+                },
+                sp: {
+                    populacao: "45M",
+                    nome: "Sao Paulo",
+                },
+                mg: {
+                    populacao: "3M",
+                    nome: "Minas Gerais",
+                },
+            }
+            },
+            methods: {
+                Alterar(){
+                    this.$set(this.frutas, 0, "Maçã");
+                }
+            }
+            
+            
+        });
+    </script>
+
+</body>
+</html>

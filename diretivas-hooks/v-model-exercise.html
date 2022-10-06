@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-model Ex</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <!--  1 - Crie um criador de botões.
+            O usuário poderá definir:
+            width,
+            height,
+            font-size,
+            font-family,
+            text-align,
+            background,
+            color,
+            border-radius,
+
+            As escolhas serão feitas em campos de
+            formulário. Cada escolha deverá ser
+            refletida em um elemento (o botão).
+
+
+            2 - Crie um formulário com, nome, email, telefone e mensagem.
+            Ao clicar em enviar, as informações preenchidas no formulário
+            devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar) -->
+
+
+    <div id="app">
+        <div>
+            <label for="width">width:</label>
+            <input placeholder="width" type="text" name="width" id="width" v-model="btn.width">
+        </div>
+        <div>
+            <label for="height">height:</label>
+            <input placeholder="height" type="text" name="height" id="height" v-model="btn.height">
+        </div>
+        <div>
+            <label for="fontSize">fontSize:</label>
+            <input placeholder="fontSize" type="text" name="fontSize" id="fontSize" v-model="btn.fontSize">
+        </div>
+        <div>
+            <label for="fontFamily">fontFamily:</label>
+            <input placeholder="fontFamily" type="text" name="fontFamily" id="fontFamily" v-model="btn.fontFamily">
+        </div>
+        <div>
+            <label for="textAlign">textAlign:</label>
+            <input placeholder="textAlign" type="text" name="textAlign" id="textAlign" v-model="btn.textAlign">
+        </div>
+        <div>
+            <label for="backGround">backGround:</label>
+            <input placeholder="backGround" type="color" name="backGround" id="backGround" v-model="btn.background">
+        </div>
+        <div>
+            <label for="color">color:</label>
+            <input placeholder="color" type="color" name="color" id="color" v-model="btn.color">
+        </div>
+        <div>
+            <label for="borderRadius">borderRadius:</label>
+            <input placeholder="borderRadius" type="text" name="borderRadius" id="borderRadius" v-model="btn.borderRadius">
+        </div>
+<br><br>
+
+        <button :style="btn">Teste</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+               btn: {
+                width: "0px",
+                height: "0px",
+                fontSize: "24px",
+                fontFamily: "",
+                textAlign: "",
+                background: "",
+                color: "",
+                borderRadius: "0px",
+                cursor: "pointer"
+               }
+            }
+        })
+    </script>
+</body>
+</html>

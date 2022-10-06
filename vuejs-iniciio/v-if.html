@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-if</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <!-- V=if nao carrega o elemento no DOM -->
+    <!-- enquanto o v-show adciona ou nao o display hidden -->
+    <div id="app">
+        <template v-if="logado">
+            <p>Usuario logado</p>
+             <button @click="logado = false">Deslogar</button>
+        </template>
+        <template v-else>
+            <p>Usuario deslogado</p>
+             <button @click="logado = true">Logar</button>
+        </template>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                logado: 2
+            },
+            methods:{
+
+            }
+        });
+    </script>
+
+</body>
+</html>

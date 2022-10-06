@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed e watch</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="puxarPaises">Puxar</button>
+        <select name="paises" id="paises" v-model="paisSelecionado">
+            <option v-for="pais in paises" :value="pais.name">{{pais.name}}</option>
+        </select>
+        <p>{{capital.capital}}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                paises: {},
+                paisSelecionado: "",
+                capital: ""
+            },
+            methods: {
+                puxarPaises() {
+                    fetch('https://restcountries.com/v2/all')
+                        .then(res => res.json())
+                        .then(res => {
+                            this.paises = res;
+                        })
+                },
+            },
+            watch: {
+                paisSelecionado(valor) {
+                    this.capital = this.paises.find((pais) => pais.name === valor)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
