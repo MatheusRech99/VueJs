@@ -25,16 +25,26 @@
   O componente 2 deve ser registrado localmente dentro do componente 3.
   O componente 3 deve ser registrado localmente da instância Vue.js
  -->
-    <div id="app"></div>
+    <div id="app">
+        <mostrar-tempo></mostrar-tempo>
+        <br>
+        <mostrar-apple></mostrar-apple>
+    </div>
+
+
+
     <script type="module">
         import MostrarApple from "./MostrarApple.js";
         import MostrarCambio from "./MostrarCambio.js";
         import MostrarTempo from "./MostrarTempo.js";
 
+        Vue.component('MostrarTempo', MostrarTempo) // registrando componente global
+
         const vm = new Vue({
             el: "#app",
             components: {
-
+                MostrarCambio, // registrando componente local
+                MostrarApple
             },
 
         })
